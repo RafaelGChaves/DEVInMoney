@@ -21,7 +21,7 @@ public class ContaCorrente extends Conta {
 		super(nome, cpf, rendaMensal, saldo, agencia, sequencial, TiposDeConta.CONTA_CORRENTE);
 	}
 
-	private boolean direitoChequeEspecial() {
+	public boolean direitoChequeEspecial() {
 		if (this.getRendaMensal() >= 500 && this.getRendaMensal() < 2000) {
 			System.out.println("Você tem direito a um cheque especial no valor de R$ 200,00.");
 			return true;
@@ -36,7 +36,6 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public Transacao saque(double valor) {
-		double valorCheque;
 		if (getSaldo() - valor >= 0) {
 			System.out.println("Saldo anterior: " + getSaldo());
 			this.setSaldo(getSaldo() - valor);

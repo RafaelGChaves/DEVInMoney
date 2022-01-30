@@ -16,10 +16,12 @@ public class ContaPoupanca extends Conta {
 		super(nome, cpf, rendaMensal, saldo, agencia, sequencial, TiposDeConta.CONTA_POUPANCA);
 	}
 
-	private void simulacaoRendimento(int mesesRendimento, double rentabilidadeAnual) {
-		double valorSimulado = this.getSaldo();
-		valorSimulado += (this.getSaldo() * (rentabilidadeAnual / 0.12) * mesesRendimento);
-
+	public void simulacaoRendimento(int rentabilidadeAnual, int mesesRendimento) {		
+		double valorSimulado;
+		valorSimulado = this.getSaldo() * (rentabilidadeAnual / 0.12) *  mesesRendimento;
+		System.out.println("Em " + mesesRendimento + " meses, sua conta renderá R$ " + valorSimulado);
+		
 	}
+	
 
 }

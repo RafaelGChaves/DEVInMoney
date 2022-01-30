@@ -1,5 +1,6 @@
 package devInMoney.banco;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import devInMoney.conta.TiposDeConta;
 
 public class Menus {
 
-	public static String cabecalho = "-- D e v I n B a n k --";
+	public static String cabecalho = "\n-- D e v I n B a n k --";
 	public int opcao;
 	public String usuarioAtivo;
 
@@ -70,10 +71,8 @@ public class Menus {
 				break;
 			}
 			System.out.println("Selecione um tipo de Conta: ");
-			System.out.println(
-					"\n1 ->Conta Corrente : \nAqui você tem direito a cheque especial com valor referente a sua renda");
-			System.out
-					.println("\n2 -> Conta Poupança: \nSeu dinheiro rende 0.5% ao mês e pode retirar a qualquer hora");
+			System.out.println("\n1 ->Conta Corrente : \nAqui você tem direito a cheque especial com valor referente a sua renda");
+			System.out.println("\n2 -> Conta Poupança: \nSeu dinheiro rende 0.5% ao mês e pode retirar a qualquer hora");
 			System.out.println("\n3 ->Conta Investimento: \nConheça nossos planos: \n");
 			opcaoConta = scanner.nextInt();
 			Conta novaConta = null;
@@ -103,7 +102,8 @@ public class Menus {
 				System.out.println("Opção inválida");
 				break;
 			}
-			System.out.println("Bem vindo " + novaConta.getNome());
+			System.out.println("Bem vindo " + novaConta.getNome() + " ---- Número da conta: "
+					+ novaConta.getNumeroConta() + "\nGuarde esse número com carinho");
 			menuGeral(novaConta, banco);
 			break;
 
@@ -140,11 +140,11 @@ public class Menus {
 			}
 			break;
 		case 4:
-//			if (LocalDate.now().getDayOfWeek() != LocalDate.now().getDayOfWeek().SUNDAY
-//					|| LocalDate.now().getDayOfWeek() != LocalDate.now().getDayOfWeek().SATURDAY) {
-//				System.out.println("\nNão é possível realizar essa operação aos finais de semana.");
-//				menuGeral(usuario, banco);
-//			}
+			if (LocalDate.now().getDayOfWeek() != LocalDate.now().getDayOfWeek().SUNDAY
+					|| LocalDate.now().getDayOfWeek() != LocalDate.now().getDayOfWeek().SATURDAY) {
+				System.out.println("\nNão é possível realizar essa operação aos finais de semana.");
+				menuGeral(usuario, banco);
+			}
 			System.out.println("\nDigite número da conta destino: ");
 			String numeroContaDestino = scanner.next();
 			Conta contaDestino = null;
@@ -193,14 +193,15 @@ public class Menus {
 			menuInicial(banco);
 			break;
 		case 8:
+			System.out.println("\n----TRANSACÕES USUÁRIOS----");
 			banco.mostraTransacoes(usuario);
-			System.out.println("----");
+			System.out.println("\n----CONTAS ATIVAS----");
 			banco.mostraContas(usuario);
-			System.out.println("----");
+			System.out.println("\n----CONTAS NEGATIVAS----");
 			banco.mostraContasNegativas(usuario);
-			System.out.println("----");
+			System.out.println("\n---VALOR INVESTIDO----");
 			banco.mostraValorTotal(usuario);
-			System.out.println("----");
+			System.out.println("\n------------ \n");
 			break;
 
 		default:
@@ -223,7 +224,7 @@ public class Menus {
 			break;
 
 		default:
-			System.out.println("Opção inválida");
+			System.out.println("**Opção inválida**");
 			break;
 		}
 
@@ -234,15 +235,20 @@ public class Menus {
 		opcao = scanner.nextInt();
 		switch (opcao) {
 		case 1:
-			System.out.println();
+			System.out
+					.println("Para calcular o valor do rendimento \nDigite a rentabilidade anual e o número de meses");
+			int rendimento = scanner.nextInt();
+			int meses = scanner.nextInt();
+			usuario.simulaRendimento(rendimento, meses);
+			System.out.println("-- Operação finalizada --");
 			break;
 
 		case 2:
-
+			menuInicial(banco);
 			break;
 
 		default:
-			System.out.println("Opção inválida");
+			System.out.println("**Opção inválida**");
 			break;
 		}
 
@@ -253,10 +259,31 @@ public class Menus {
 		opcao = scanner.nextInt();
 		switch (opcao) {
 		case 1:
-			usuario.simulaRendimento(100, 12);
+			System.out.println("");
+			double rendimento = scanner.nextDouble();
+			int meses = scanner.nextInt();
+			usuario.simulaRendimento(rendimento, 12);
 			break;
 
 		case 2:
+			System.out.println("Escolha entre os tipos de investimento:");
+			switch (opcao) {
+			case 1:
+				System.out.println("1 ->" + PlanosDeInvestimento.INVESTIDOR_BAIXA_RENDA.getNomeInvestimento() + "\n"
+						+ PlanosDeInvestimento.INVESTIDOR_BAIXA_RENDA.getDescricaoInvestimento());
+				break;
+			case 2:
+				System.out.println("2 ->" + PlanosDeInvestimento.INVESTIDOR_PREMIUM.getNomeInvestimento() + "\n"
+						+ PlanosDeInvestimento.INVESTIDOR_PREMIUM.getDescricaoInvestimento());
+				break;
+		case 3:
+				menuGeral(usuario, banco);
+				break;
+
+			default:
+				System.out.println("**Opção inválida**");
+				break;
+			}
 
 			break;
 

@@ -45,7 +45,11 @@ public class Banco {
 	}
 
 	public void iniciaConta() {
-		// numero conta -> 00100101
+		/*O numero das contas possuem 8 dígidos, sendo eles:
+		 * ### -> referente a agencia 
+		 * ### -> referente ao id pessoal
+		 * ## -> referente ao tipo de conta
+		 */
 		criaConta("Rafael Chaves", "10592252639", 1000.00, 00.00, Agencia.FLORIANOPOLIS, TiposDeConta.CONTA_CORRENTE);
 		criaConta("Mariana Cortes", "11111111111", 8000.00, 4500.00, Agencia.FLORIANOPOLIS,
 				TiposDeConta.CONTA_CORRENTE);
@@ -58,9 +62,7 @@ public class Banco {
 				TiposDeConta.CONTA_INVESTIMENTO, PlanosDeInvestimento.INVESTIDOR_BAIXA_RENDA);
 		criaConta("Mariana Cortes", "11111111111", 8000.00, 4500.00, Agencia.FLORIANOPOLIS,
 				TiposDeConta.CONTA_INVESTIMENTO, PlanosDeInvestimento.INVESTIDOR_PREMIUM);
-		for (Conta conta : listaDeContas) {
-			System.out.println(conta.getNumeroConta());
-		}
+		
 	}
 
 	public Conta criaConta(String nome, String cpf, double rendaMensal, double saldo, Agencia agencia,

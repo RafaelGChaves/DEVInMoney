@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import devInMoney.conta.Conta;
-import devInMoney.conta.ContaCorrente;
 import devInMoney.conta.TiposDeConta;
 
 public class Menus {

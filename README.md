@@ -7,4 +7,4 @@ O DEVInMoney é uma aplicação desenvolvida em JAVA seguindo roteiro proposto c
 - Criação do número da conta de forma sequencial
 - Acesso do banco ao histórico de todas as transações e informações das contas
 
-* Ainda a ser finalizado, sendo necessário corrigir alguns métodos de transação, validação do cpf e o tratamento de erros.
+* Ainda a ser finalizado, sendo necessário corrigir alguns métodos de transação, validação do cpf e tratamento de erros.
